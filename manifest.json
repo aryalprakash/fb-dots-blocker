@@ -1,0 +1,36 @@
+{
+  "name": "Dots Blocker",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Blocks those freaking dot comments on facebook",
+  "homepage_url": "https://facebook.com/aryalprakash",
+  "default_locale": "en",
+  "icons": {
+    "16": "img/logo.png",
+    "48": "img/logo.png",
+    "128": "img/logo.png"
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "*://*.facebook.com/*",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "css": [
+        "content_script/replace-reactions.css"
+      ],
+      "js": [
+        "content_script/script.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "img/*.png"
+  ]
+}
