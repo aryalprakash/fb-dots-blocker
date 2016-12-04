@@ -15,7 +15,16 @@ var img = ["http://i.imgur.com/JdNU6Bb.jpg",
 //}
 
 var hide = true;
-var replaceText = "I'm an idiot."
+var replaceText = "I am an idiot."
+var replaceTexts = [
+	"I'm an idiot.",
+	"Oh god, why was I even born?",
+	"I must have hit my head quite hard sometime in my childhood.",
+	"Everyone, I apologize for my stupidity.",
+	"हल्का स्लो टाइपको छु, कृपया माइन्ड नगर्नुहोला।",
+
+
+]
 //chrome.storage.local.get(/* String or Array */["replaceText", "hide"], function(items){
 //  if(items.hide){
 //    hide = true;
@@ -26,14 +35,17 @@ var replaceText = "I'm an idiot."
 //
 //});
 
+function randomText(){
+	return replaceTexts[Math.floor(Math.random() * replaceTexts.length)];
+}
 
-function hideDot(hide, text,start,end){
+function hideDot(hide, start,end){
   for(i=start; i<end; i++){
     var x = document.getElementsByClassName('UFICommentBody')[i].querySelector("span");
     var comment = x.innerHTML;
     if(comment == '.' || comment == ',' || comment == '*' || comment == "thoplo" || comment == "dot" || comment == ".." || comment == "..." || comment == "...."|| comment == "....."){
       //if(hide) {
-        x.innerHTML = text;
+        x.innerHTML = randomText();
       //} else{
       //  x.innerHTML = text
       //}
@@ -47,12 +59,12 @@ window.onload = function() {
   //document.getElementById("hide").checked = hide;
 
   window.onscroll = function () {
-    if (document.body.scrollTop > 30) {
+    // if (document.body.scrollTop > 30) {
       //addArt();
       var start = end;
       end = document.getElementsByClassName('UFICommentBody').length;
-      hideDot(hide, replaceText,start, end);
-    }
+      hideDot(hide, start, end);
+    // }
   };
 
   //document.getElementById("hide").onclick = function(){
@@ -87,8 +99,21 @@ window.onload = function() {
   //};
 };
 
-var end = 1;
-hideDot(hide, replaceText, 0,end);
+function timeout() {
+    setTimeout(function () {
+        // Do Something Here
+
+		var end = document.getElementsByClassName('UFICommentBody').length;
+		hideDot(hide, 0, end);
+        // Then recall the parent function to
+        // create a recursive loop.
+        timeout();
+    }, 1000);
+}
+
+// var end = 1;
+// hideDot(hide, 0,end);
+timeout();
 
 // Feed Ad
 //function addArt() {
