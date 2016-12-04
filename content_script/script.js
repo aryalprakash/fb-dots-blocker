@@ -45,14 +45,14 @@ function hideDot(hide, start,end){
     var x = document.getElementsByClassName('UFICommentBody')[i].querySelector("span");
     if (x !== null){
 	    var comment = x.innerHTML;
-	    if(comment == '.' || comment == ',' || comment == '*' || comment == "thoplo" || comment == "dot" || comment == ".." || comment == "..." || comment == "...."|| comment == "....."){
+	    if( comment.match(/^\W+$/) || comment == "thoplo" || comment == "dot" ){
 	      //if(hide) {
 	        x.innerHTML = randomText();
 	      //} else{
 	      //  x.innerHTML = text
 	      //}
 	    }
-	}
+    }
   }
 }
 
