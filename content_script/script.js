@@ -43,9 +43,11 @@ function randomText(){
 function hideDot(hide, start,end){
   for(i=start; i<end; i++){
     var x = document.getElementsByClassName('UFICommentBody')[i].querySelector("span");
+
     if (x !== null){
 	    var comment = x.innerHTML;
-	    if( comment.match(/^\W+$/) || comment == "thoplo" || comment == "dot" ){
+
+	    if( comment.match(/^[.,*]+$/) || comment == "thoplo" || comment == "dot" ){
 	      //if(hide) {
 	        x.innerHTML = randomText();
 	      //} else{
